@@ -1,5 +1,7 @@
 export const getWorkouts = async () => {
-    const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
+    const response = await fetch(
+        "https://api.api-store.workers.dev/api/fitlog"
+    );
 
     if (!response.ok) {
         throw new Error("Failed to fetch workouts");
@@ -10,7 +12,7 @@ export const getWorkouts = async () => {
 
 export const getWorkout = async (id: string) => {
     const response = await fetch(
-        `https://api.abcz.workers.dev/api/fitlog/${id}`
+        `https://api.api-store.workers.dev/api/fitlog/${id}`
     );
 
     if (!response.ok) {
