@@ -21,17 +21,23 @@ const LibrarySection = () => {
 
     if (loading) {
         return (
-            <div className="container mx-auto max-w-6xl px-6 py-10">
+            <section id="library" className="container mx-auto max-w-6xl px-6 py-8">
                 <p className="text-gray-400 text-sm">Loading workouts...</p>
-            </div>
+            </section>
         );
     }
 
     return (
-        <section id="library" className="container mx-auto max-w-6xl px-6 py-10">
-            <h2 className="text-white text-xl font-bold mb-6">
-                Workout Library
-            </h2>
+        <section id="library" className="container mx-auto max-w-6xl px-6 pt-6 pb-10">
+            <div className="mb-5">
+                <h2 className="text-white text-3xl font-bold">
+                    THE LIBRARY
+                </h2>
+
+                <p className="text-[#9CA3AF] text-sm mt-1">
+                    Twelve lifts covering every major muscle group.
+                </p>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {workouts.map((workout) => (

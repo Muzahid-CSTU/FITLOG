@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "@/assets/logo.png";
+import { usePlan } from "@/context/PlanContext";
 
 const Navbar = () => {
     const pathname = usePathname();
-    const planCount = 0;
-    const savedCount = 0;
+    const { plan, saved } = usePlan();
 
     return (
         <div className="bg-[#0d0f12] border-b border-[#1d2025]">
@@ -44,14 +44,14 @@ const Navbar = () => {
                         <Link href="/my-plan" className="flex items-center gap-2 text-[10px] text-gray-400">
                             Plan
                             <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#c8ff00] text-[9px] text-black">
-                                {planCount}
+                                {plan.length}
                             </span>
                         </Link>
 
                         <Link href="/my-plan" className="flex items-center gap-2 text-[10px] text-gray-400">
                             Saved
                             <span className="flex h-4 w-4 items-center justify-center rounded-full border border-gray-600 text-[9px] text-gray-300">
-                                {savedCount}
+                                {saved.length}
                             </span>
                         </Link>
                     </div>
