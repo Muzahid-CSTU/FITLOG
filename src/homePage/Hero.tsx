@@ -27,7 +27,7 @@ const Hero = () => {
                         <Image
                             src={banner}
                             alt="Workout"
-                            className="w-[350px]"
+                            className="w-87.5"
                         />
                     </div>
 
