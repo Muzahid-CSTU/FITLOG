@@ -68,11 +68,9 @@ const MyPlan = () => {
                         EXERCISES
                     </p>
 
-                    <p className="text-white text-xl font-bold mt-1">
-                        {activeTab === "today"
-                            ? plan.length
-                            : saved.length}
-                    </p>
+                    <h2 className="text-white text-xl font-extrabold mt-1">
+                        {metrics.exercises}
+                    </h2>
                 </div>
 
                 <div className="bg-[#15171D] border border-[#222630] rounded-lg p-4">
@@ -80,14 +78,9 @@ const MyPlan = () => {
                         MINUTES
                     </p>
 
-                    <p className="text-white text-xl font-bold mt-1">
-                        {activeTab === "today"
-                            ? metrics.minutes
-                            : saved.reduce(
-                                (total, item) => total + item.duration,
-                                0
-                            )}
-                    </p>
+                    <h2 className="text-white text-xl font-extrabold mt-1">
+                        {metrics.minutes}
+                    </h2>
                 </div>
 
                 <div className="bg-[#15171D] border border-[#222630] rounded-lg p-4">
@@ -95,15 +88,9 @@ const MyPlan = () => {
                         CALORIES
                     </p>
 
-                    <p className="text-white text-xl font-bold mt-1">
-                        {activeTab === "today"
-                            ? metrics.calories
-                            : saved.reduce(
-                                (total, item) =>
-                                    total + item.caloriesBurned,
-                                0
-                            )}
-                    </p>
+                    <h2 className="text-white text-xl font-extrabold mt-1">
+                        {metrics.calories}
+                    </h2>
                 </div>
 
             </div>
@@ -114,10 +101,9 @@ const MyPlan = () => {
 
                     <button
                         onClick={() => setActiveTab("today")}
-                        className={
-                            activeTab === "today"
-                                ? "bg-[#C2F800] text-black px-4 py-2 rounded-md text-[9px] font-bold"
-                                : "bg-[#15171D] text-gray-400 border border-[#222630] px-4 py-2 rounded-md text-[9px]"
+                        className={activeTab === "today"
+                            ? "bg-[#C2F800] text-black px-4 py-2 rounded-md text-[9px] font-bold"
+                            : "text-gray-400 border border-[#222630] px-4 py-2 rounded-md text-[9px]"
                         }
                     >
                         Today
@@ -125,10 +111,9 @@ const MyPlan = () => {
 
                     <button
                         onClick={() => setActiveTab("saved")}
-                        className={
-                            activeTab === "saved"
-                                ? "bg-[#C2F800] text-black px-4 py-2 rounded-md text-[9px] font-bold"
-                                : "bg-[#15171D] text-gray-400 border border-[#222630] px-4 py-2 rounded-md text-[9px]"
+                        className={activeTab === "saved"
+                            ? "bg-[#C2F800] text-black px-4 py-2 rounded-md text-[9px] font-bold"
+                            : "text-gray-400 border border-[#222630] px-4 py-2 rounded-md text-[9px]"
                         }
                     >
                         Saved
@@ -160,28 +145,37 @@ const MyPlan = () => {
                 <div className="space-y-3">
 
                     {plan.length === 0 ? (
-                        <div className="text-center py-16">
 
-                            <p className="text-gray-500 text-sm">
-                                Your plan is empty.
+                        <div className="border border-dashed border-[#222630] rounded-xl min-h-[215px] flex flex-col items-center justify-center text-center">
+
+                            <p className="text-white text-sm font-extrabold">
+                                NOTHING HERE YET
+                            </p>
+
+                            <p className="text-gray-500 text-[10px] mt-2">
+                                Browse the library and add a lift to get today moving.
                             </p>
 
                             <Link
                                 href="/"
-                                className="inline-block mt-4 bg-[#C2F800] text-black px-4 py-2 rounded-md text-[9px] font-bold"
+                                className="inline-block mt-4 bg-[#C2F800] text-black px-5 py-2 rounded-full text-[9px] font-bold"
                             >
                                 Go to workouts
                             </Link>
 
                         </div>
+
                     ) : (
+
                         sortedPlan.map((workout) => (
+
                             <div
                                 key={workout.id}
                                 className="bg-[#15171D] border border-[#222630] rounded-lg p-4 flex items-center justify-between"
                             >
 
                                 <div>
+
                                     <h3 className="text-white text-sm font-bold">
                                         {workout.name}
                                     </h3>
@@ -199,6 +193,7 @@ const MyPlan = () => {
                                         </span>
 
                                     </div>
+
                                 </div>
 
                                 <div className="flex items-center gap-2">
@@ -213,25 +208,18 @@ const MyPlan = () => {
                                     <button
                                         onClick={() => {
                                             markAsDone(workout.id);
-                                            toast.success(
-                                                "Workout marked as done"
-                                            );
+                                            toast.success("Workout marked as done");
                                         }}
                                         className="text-black bg-[#C2F800] px-3 py-2 rounded-md text-[8px]"
                                     >
                                         <LuCheck className="inline w-3 h-3 mr-1" />
-
-                                        {workout.isDone
-                                            ? "Done"
-                                            : "Mark as Done"}
+                                        {workout.isDone ? "Done" : "Mark as Done"}
                                     </button>
 
                                     <button
                                         onClick={() => {
                                             removeFromPlan(workout.id);
-                                            toast.success(
-                                                "Removed from today's plan"
-                                            );
+                                            toast.success("Removed from today's plan");
                                         }}
                                         className="text-gray-400 border border-[#222630] p-2 rounded-md"
                                     >
@@ -241,6 +229,7 @@ const MyPlan = () => {
                                 </div>
 
                             </div>
+
                         ))
                     )}
 
@@ -251,28 +240,37 @@ const MyPlan = () => {
                 <div className="space-y-3">
 
                     {saved.length === 0 ? (
-                        <div className="text-center py-16">
 
-                            <p className="text-gray-500 text-sm">
-                                No saved workouts.
+                        <div className="border border-dashed border-[#222630] rounded-xl min-h-[215px] flex flex-col items-center justify-center text-center">
+
+                            <p className="text-white text-sm font-extrabold">
+                                NOTHING HERE YET
+                            </p>
+
+                            <p className="text-gray-500 text-[10px] mt-2">
+                                Browse the library and save a lift for later.
                             </p>
 
                             <Link
                                 href="/"
-                                className="inline-block mt-4 bg-[#C2F800] text-black px-4 py-2 rounded-md text-[9px] font-bold"
+                                className="inline-block mt-4 bg-[#C2F800] text-black px-5 py-2 rounded-full text-[9px] font-bold"
                             >
                                 Go to workouts
                             </Link>
 
                         </div>
+
                     ) : (
+
                         sortedSaved.map((workout) => (
+
                             <div
                                 key={workout.id}
                                 className="bg-[#15171D] border border-[#222630] rounded-lg p-4 flex items-center justify-between"
                             >
 
                                 <div>
+
                                     <h3 className="text-white text-sm font-bold">
                                         {workout.name}
                                     </h3>
@@ -280,6 +278,7 @@ const MyPlan = () => {
                                     <p className="text-gray-500 text-[9px] mt-2">
                                         {workout.equipment}
                                     </p>
+
                                 </div>
 
                                 <div className="flex items-center gap-2">
@@ -294,9 +293,7 @@ const MyPlan = () => {
                                     <button
                                         onClick={() => {
                                             removeFromSaved(workout.id);
-                                            toast.success(
-                                                "Removed from saved"
-                                            );
+                                            toast.success("Removed from saved");
                                         }}
                                         className="text-gray-400 border border-[#222630] p-2 rounded-md"
                                     >
@@ -306,6 +303,7 @@ const MyPlan = () => {
                                 </div>
 
                             </div>
+
                         ))
                     )}
 

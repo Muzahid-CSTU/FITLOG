@@ -3,6 +3,7 @@
 import { Workout } from "@/types";
 import { usePlan } from "@/context/PlanContext";
 import toast from "react-hot-toast";
+import { LuCalendarPlus, LuBookmark } from "react-icons/lu";
 
 type WorkoutActionsProps = {
     workout: Workout;
@@ -12,6 +13,8 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
     const { plan, saved, addToPlan, addToSaved } = usePlan();
 
     const handleAddToPlan = () => {
+        toast.dismiss();
+
         const alreadyAdded = plan.some((item) => item.id === workout.id);
 
         if (alreadyAdded) {
@@ -29,6 +32,8 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
     };
 
     const handleSave = () => {
+        toast.dismiss();
+
         const alreadySaved = saved.some((item) => item.id === workout.id);
 
         if (alreadySaved) {
@@ -41,19 +46,21 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
     };
 
     return (
-        <div className="flex gap-2 mt-5">
+        <div className="flex flex-wrap gap-3 mt-6">
 
             <button
                 onClick={handleAddToPlan}
-                className="btn bg-[#C2F800] hover:bg-[#C2F800] text-black border-none rounded-md h-7 min-h-7 px-3 text-[8px]"
+                className="btn bg-[#C2F800] hover:bg-[#C2F800] text-black border-none rounded-lg h-9 min-h-9 px-4 text-[9px] font-medium"
             >
+                <LuCalendarPlus className="w-3.5 h-3.5" />
                 Add to today's plan
             </button>
 
             <button
                 onClick={handleSave}
-                className="btn bg-transparent hover:bg-[#15171D] text-gray-400 border border-[#222630] rounded-md h-7 min-h-7 px-3 text-[8px]"
+                className="btn bg-transparent hover:bg-[#15171D] text-gray-300 border border-[#222630] rounded-lg h-9 min-h-9 px-4 text-[9px] font-medium"
             >
+                <LuBookmark className="w-3.5 h-3.5" />
                 Save for later
             </button>
 
