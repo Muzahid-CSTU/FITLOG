@@ -24,8 +24,9 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <div className="navbar-center">
+                    <div className="navbar-center hidden sm:flex">
                         <ul className="flex items-center gap-2">
+
                             <li>
                                 <Link href="/" className={pathname === "/" ? "bg-[#172500] text-[#c8ff00] px-4 py-1.5 text-[10px] rounded-full" : "text-gray-400 px-4 py-1.5 text-[10px]"}>
                                     Workouts
@@ -37,12 +38,15 @@ const Navbar = () => {
                                     My Plan
                                 </Link>
                             </li>
+
                         </ul>
                     </div>
 
-                    <div className="navbar-end gap-5">
+                    <div className="navbar-end gap-3 sm:gap-5">
+
                         <Link href="/my-plan" className="flex items-center gap-2 text-[10px] text-gray-400">
                             Plan
+
                             <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#c8ff00] text-[9px] text-black">
                                 {plan.length}
                             </span>
@@ -50,10 +54,12 @@ const Navbar = () => {
 
                         <Link href="/my-plan" className="flex items-center gap-2 text-[10px] text-gray-400">
                             Saved
+
                             <span className="flex h-4 w-4 items-center justify-center rounded-full border border-gray-600 text-[9px] text-gray-300">
                                 {saved.length}
                             </span>
                         </Link>
+
                     </div>
 
                 </div>

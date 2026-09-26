@@ -23,6 +23,7 @@ const PlanContext = createContext<PlanContextType | undefined>(undefined);
 export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
     const [plan, setPlan] = useState<PlanWorkout[]>([]);
     const [saved, setSaved] = useState<Workout[]>([]);
+    const [isHydrated, setIsHydrated] = useState(false);
 
     useEffect(() => {
         const savedPlan = localStorage.getItem("fitlog-plan");
@@ -35,15 +36,21 @@ export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
         if (savedWorkouts) {
             setSaved(JSON.parse(savedWorkouts));
         }
+
+        setIsHydrated(true);
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("fitlog-plan", JSON.stringify(plan));
-    }, [plan]);
+        if (isHydrated) {
+            localStorage.setItem("fitlog-plan", JSON.stringify(plan));
+        }
+    }, [plan, isHydrated]);
 
     useEffect(() => {
-        localStorage.setItem("fitlog-saved", JSON.stringify(saved));
-    }, [saved]);
+        if (isHydrated) {
+            localStorage.setItem("fitlog-saved", JSON.stringify(saved));
+        }
+    }, [saved, isHydrated]);
 
     const addToPlan = (workout: Workout) => {
         if (plan.length >= 5) {
@@ -80,15 +87,23 @@ export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
     const markAsDone = (id: number) => {
         setPlan(
             plan.map((item) =>
-                item.id === id ? { ...item, isDone: true } : item
+                item.id === id
+                    ? { ...item, isDone: true }
+                    : item
             )
         );
     };
 
     const metrics = {
         exercises: plan.length,
-        minutes: plan.reduce((total, item) => total + item.duration, 0),
-        calories: plan.reduce((total, item) => total + item.caloriesBurned, 0),
+        minutes: plan.reduce(
+            (total, item) => total + item.duration,
+            0
+        ),
+        calories: plan.reduce(
+            (total, item) => total + item.caloriesBurned,
+            0
+        ),
     };
 
     return (
