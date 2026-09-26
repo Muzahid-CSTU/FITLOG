@@ -9,6 +9,7 @@ import {
     LuTrash2,
     LuCheck,
 } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 const MyPlan = () => {
     const {
@@ -210,9 +211,12 @@ const MyPlan = () => {
                                     </Link>
 
                                     <button
-                                        onClick={() =>
-                                            markAsDone(workout.id)
-                                        }
+                                        onClick={() => {
+                                            markAsDone(workout.id);
+                                            toast.success(
+                                                "Workout marked as done"
+                                            );
+                                        }}
                                         className="text-black bg-[#C2F800] px-3 py-2 rounded-md text-[8px]"
                                     >
                                         <LuCheck className="inline w-3 h-3 mr-1" />
@@ -223,9 +227,12 @@ const MyPlan = () => {
                                     </button>
 
                                     <button
-                                        onClick={() =>
-                                            removeFromPlan(workout.id)
-                                        }
+                                        onClick={() => {
+                                            removeFromPlan(workout.id);
+                                            toast.success(
+                                                "Removed from today's plan"
+                                            );
+                                        }}
                                         className="text-gray-400 border border-[#222630] p-2 rounded-md"
                                     >
                                         <LuTrash2 className="w-3 h-3" />
@@ -285,9 +292,12 @@ const MyPlan = () => {
                                     </Link>
 
                                     <button
-                                        onClick={() =>
-                                            removeFromSaved(workout.id)
-                                        }
+                                        onClick={() => {
+                                            removeFromSaved(workout.id);
+                                            toast.success(
+                                                "Removed from saved"
+                                            );
+                                        }}
                                         className="text-gray-400 border border-[#222630] p-2 rounded-md"
                                     >
                                         <LuTrash2 className="w-3 h-3" />
