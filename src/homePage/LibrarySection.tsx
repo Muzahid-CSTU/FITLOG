@@ -56,11 +56,11 @@ const LibrarySection = () => {
             className="container mx-auto max-w-6xl px-6 pt-6 pb-10"
         >
             <div className="mb-5">
-                <h2 className="text-white text-2xl font-extrabold">
+                <h2 className="text-[#FFFFFF] text-3xl font-bold">
                     THE LIBRARY
                 </h2>
 
-                <p className="text-gray-500 text-[10px] mt-1">
+                <p className="text-[#9CA3AF] text-sm mt-1">
                     Twelve lifts covering every major muscle group.
                 </p>
             </div>

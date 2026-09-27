@@ -10,9 +10,7 @@ export const metadata: Metadata = {
     description: "Workout Library",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
+export default function RootLayout({ children,}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (

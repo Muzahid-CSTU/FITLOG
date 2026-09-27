@@ -17,20 +17,20 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
                 <div className="p-5">
                     <div className="flex gap-2 mb-4">
                         {workout.muscleGroups.map((muscle) => (
-                            <span key={muscle} className="bg-[#C2F800] text-black text-[9px] font-bold px-2.5 py-1 rounded-full">
+                            <span key={muscle} className="bg-[#C2F800] text-black text-[11px] font-bold px-2.5 py-1 rounded-full">
                                 {muscle}
                             </span>
                         ))}
                     </div>
-                    <h3 className="text-white font-bold text-sm">
+                    <h3 className="text-[#FFFFFF] font-bold text-lg">
                         {workout.name}
                     </h3>
 
-                    <p className="text-gray-500 text-[10px] mt-2">
+                    <p className="text-[#9CA3AF] text-xs mt-2">
                         {workout.equipment}
                     </p>
 
-                    <div className="border-t border-[#222630] mt-4 pt-3 flex items-center gap-4 text-gray-400 text-[10px]">
+                    <div className="border-t border-[#222630] mt-4 pt-3 flex items-center gap-4 text-[#9CA3AF] text-xs">
                         <span className="flex items-center gap-1">
                             <LuClock3 />
                             {workout.duration} min
